@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Payement{% endblock %}
+
+{% block body %}
+
+   <div class="parallax-container valign-wrapper">
+        <div class="section no-pad-bot">
+            <div class="container">
+                <h1 class="header center white-text light">{{ campaign.name }}</h1>
+                <div class="row center">
+                    <h5 class="header col s12 light">- Organisée par : {{ campaign.username }} -</h5>
+                </div>
+            </div>
+        </div>
+        <div class="parallax"><img src="/assets/images/8.jpg" alt="Titre de la campagne"></div>
+    </div>
+    
+
+    {{ include('payement/_form.html.twig') }}
+
+    <a href="{{ path('payement_index') }}">back to list</a>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        let stripe = Stripe("pk_test_51IuwAFEHR08MdWvwKhCbOaT2odaZNHSwBQgUFgvb86dze0VxjuAAgTFdRF2k70jht1y4rsRNqnyhN9iXSRKkPPLw00bMYLfT5Y");
+        // The items the customer wants to buy
+        let elements = stripe.elements();
+
+        var style = {
+    base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: '#32325d',
+    },
+    };
+
+    // Create an instance of the card Element.
+    var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>.
+    card.mount('#card-element');
+    </script>
+    {% endblock %}
+

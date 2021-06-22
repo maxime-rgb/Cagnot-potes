@@ -1,0 +1,67 @@
+    <div class="container">
+        <div class="section">
+            <div class="row">
+                <div class="col s12 center">
+                    <h4>Participez en quelques secondes</h4>
+                </div>
+            </div>
+            <!--   Form Section   -->
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        {{ form_start(form) }}
+                            <h5 class="center">Votre identité</h5>
+                            <div class="input-field col s12 l6">
+                               {{ form_widget(form.participant_id.mail_participant) }}
+                               {{ form_label(form.participant_id.mail_participant) }}
+                            </div>
+                            <div class="input-field col s12 l6">
+
+                            {% if montant is defined %}
+                                {{ form_widget(form.montant,{
+                                    "attr": {"min":"1","value":montant}
+                                    }) }}
+                             {% else %}
+                                {{ form_widget(form.montant,{
+                                    "attr": {"min":"1"}
+                                    }) }}
+                            {% endif %}
+                        {{ form_label(form.montant,"montant",{"label_attr":{"class":"montant"}}) }}
+                            </div>
+
+                            <p>
+                                <label>
+                                    {{ form_widget(form.participant_id.is_anonymous) }}
+                                    <span>Masquer mon identité auprès des autres participants</span>
+                                </label>
+                            </p>
+
+             <div class="clearfix"></div>
+                    <h5 class="center">Paiement</h5>
+                    <div class="input-field col s12">
+                        {# TODO Mettre l'input du participant id à la place  #}
+                        <input id="card_name" type="text" class="validate">
+                        <label for="card_name">Nom sur la carte</label>
+                    </div>
+                    <div class="input-field col s12" id="card-element">
+                        <input id="card_number" type="text" class="validate">
+                        <label id="card-element" for="card_number">Numéro de la carte</label>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <a href="#!" class="btn btn-large waves-effect waves-light grey col s12">Annuler</a>
+                    </div>
+                    <div class="input-field col s12 l6">
+                        <button class="btn btn-large waves-effect waves-light pink lighten-1 col s12" type="submit" name="action">
+                            Participer
+                            <i class="material-icons right">euro_symbol</i>
+                        </button>
+            </div>
+    
+ {{ form_end(form) }}
+   <script src="{{asset ('assets/js/payement.js')}}"></script>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
